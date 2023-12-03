@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/static/css/Homepage.css" />
+        <title>ElevateMe</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="elevateme">ElevateMe</div>
+
+            <div class="buttons">
+                <a href="#"
+                    ><input class="button-clicked" type="button" value="Home"
+                /></a>
+                <a href="#"
+                    ><input class="button1" type="button" value="Saved"
+                /></a>
+                <input class="button1" type="button" value="List" />
+                <input class="button1" type="button" value="5-Whys" />
+                <a href="{% url 'authenticate:signout' %}"
+                    ><input class="button1" type="button" value="Sign Out"
+                /></a>
+
+                <div class="filters">Venn Diagram Settings</div>
+
+                <div class="filters-button" id="pop-up"></div>
+                <div class="overlay" id="overlay"></div>
+
+                <div class="popup" id="popup">
+                    <h2>Venn Diagram Settings</h2>
+                    <h4 class="text1">Number of Fields</h4>
+
+                    <form
+                        method="post"
+                        action="{%url 'homepage:displayFields'%}"
+                    >
+                        {% csrf_token%}
+                        <h4 class="text2">Field 1:</h4>
+                        <input
+                            class="f1"
+                            name="field1"
+                            type="text"
+                            id="field1"
+                            {% if field1 is not None %}
+                            value="{{ field1 }}"
+                            {% endif %}
+                            placeholder="Input scope here..."
+                        />
+
+                        <h4 class="text3">Field 2:</h4>
+                        <input
+                            class="f2"
+                            name="field2"
+                            type="text"
+                            id="field2"
+                            {% if field2 is not None %}
+                            value="{{ field2}}"
+                            {% endif %}
+                            placeholder="Input scope here..."
+                        />
+
+                        <h4 class="text4">Field 3:</h4>
+                        <input
+                            class="f3"
+                            name="field3"
+                            type="text"
+                            id="field3"
+                            {% if field3 is not None %}
+                            value="{{ field3 }}"
+                            {% endif %}
+                            placeholder="Input scope here..."
+                        />
+
+                        <h4 class="text5">Filter</h4>
+                        <div class="filter-input">
+                            <input
+                                class="f4"
+                                type="text"
+                                name="filter"
+                                id="filter"
+                                placeholder="Input filter here..."
+                            />
+                        </div>
+                        <button class="closebtn" id="closeButton">Close</button>
+                        <button class="apply" id="applyButton">Apply</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container2">
+            <div class="psg">Problem Statement Generator</div>
+            <div class="specify-text1">
+                <p>
+                    Specify first the number of Venn Diagram and Input the
+                    scopes of your problem statement you want to be generated
+                </p>
+                <form method="post" action="{% url 'homepage:generatePS' %}">
+                    {% csrf_token %}
+                    <div class="venn-container">
+                        <div class="circle1">
+                            <input
+                                type="text"
+                                name="field1_text"
+                                id="field1_text"
+                                value="{{ field1 }}"
+                                readonly
+                            />
+                        </div>
+                        <div class="circle2">
+                            <input
+                                type="text"
+                                name="field2_text"
+                                id="field2_text"
+                                value="{{ field2 }}"
+                                readonly
+                            />
+                        </div>
+                        <div class="circle3">
+                            <input
+                                type="text"
+                                name="field3_text"
+                                id="field3_text"
+                                value="{{ field3 }}"
+                                readonly
+                            />
+                        </div>
+                    </div>
+                    <input
+                        class="generate-button"
+                        id="generate-button"
+                        type="submit"
+                        value="Generate"
+                    />
+                </form>
+            </div>
+        </div>
+        <script src="{% static 'script/Homepage.js' %}"></script>
+    </body>
+</html>
