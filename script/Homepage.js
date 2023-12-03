@@ -1,35 +1,37 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll('.buttons input[type="button"]');
+// This is no need kay ni gamit naman ta og anchor tag
 
-    buttons.forEach((btn) => {
-        if (btn.value === "Home") {
-            btn.classList.add("button-clicked");
-        }
-    });
+// document.addEventListener("DOMContentLoaded", () => {
+//     const buttons = document.querySelectorAll('.buttons input[type="button"]');
 
-    const handleButtonClick = () => {
-        buttons.forEach((btn) => {
-            btn.addEventListener("click", function () {
-                buttons.forEach((b) => {
-                    if (b !== this) {
-                        b.classList.remove("button-clicked");
-                        b.classList.add("button1");
-                    }
-                });
+//     buttons.forEach((btn) => {
+//         if (btn.value === "Home") {
+//             btn.classList.add("button-clicked");
+//         }
+//     });
 
-                if (!this.classList.contains("button-clicked")) {
-                    this.classList.remove("button1");
-                    this.classList.add("button-clicked");
-                } else {
-                    this.classList.remove("button-clicked");
-                    this.classList.add("button1");
-                }
-            });
-        });
-    }
+//     const handleButtonClick = () => {
+//         buttons.forEach((btn) => {
+//             btn.addEventListener("click", function () {
+//                 buttons.forEach((b) => {
+//                     if (b !== this) {
+//                         b.classList.remove("button-clicked");
+//                         b.classList.add("button1");
+//                     }
+//                 });
 
-    handleButtonClick();
-});
+//                 if (!this.classList.contains("button-clicked")) {
+//                     this.classList.remove("button1");
+//                     this.classList.add("button-clicked");
+//                 } else {
+//                     this.classList.remove("button-clicked");
+//                     this.classList.add("button1");
+//                 }
+//             });
+//         });
+//     }
+
+//     handleButtonClick();
+// });
 
 // <!-- Your HTML content -->
 
