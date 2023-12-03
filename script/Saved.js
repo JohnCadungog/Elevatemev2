@@ -1,28 +1,28 @@
 let cardCounter = 1;
 
-function deleteCard(containerId, cardId) {
-    var cardElement = document.getElementById(containerId).querySelector('#' + cardId);
+const deleteCard = (containerId, cardId) => {
+    const cardElement = document.getElementById(containerId).querySelector('#' + cardId);
     if (cardElement) {
         cardElement.remove();
     }
 }
 
-function createCard(containerId, id, text) {
+const createCard = (containerId, id, text) => {
     // Create card elements
-    var card = document.createElement("div");
+    const card = document.createElement("div");
     card.className = "card";
     card.id = id;
 
-    var checkbox = document.createElement("input");
+    const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.className = "checkbox";
 
-    var cardText = document.createElement("div");
+    const cardText = document.createElement("div");
     cardText.className = "card-text";
     cardText.contentEditable = true;
     cardText.textContent = text;
 
-    var deleteButton = document.createElement("button");
+    const deleteButton = document.createElement("button");
     deleteButton.className = "delete-button";
     deleteButton.textContent = "Delete";
     deleteButton.onclick = function () {
@@ -35,11 +35,11 @@ function createCard(containerId, id, text) {
     card.appendChild(deleteButton);
 
     // Append the card to the cards container
-    var cardsContainer = document.getElementById(containerId);
+    const cardsContainer = document.getElementById(containerId);
     cardsContainer.appendChild(card);
 }
 
-function editCard(containerId, cardId) {
+const editCard = (containerId, cardId) => {
     // Get the current card text
     const currentText = document.getElementById(cardId).getElementsByClassName('card-text')[0].innerText;
 
@@ -50,19 +50,19 @@ function editCard(containerId, cardId) {
     document.getElementById('editCardModal').style.display = 'block';
 }
 
-function closeEditCardModal() {
+const closeEditCardModal = () => {
   
     document.getElementById('editCardModal').style.display = 'none';
 }
 
-function confirmEditCard() {
+const confirmEditCard = () => {
     // Get the edited text from the input field
-    var editedText = document.getElementById('editCardText').value;
+    const editedText = document.getElementById('editCardText').value;
 
     // Update the card text with the edited text
-    var containerId = document.getElementById('editCardModal').dataset.containerId;
-    var cardId = 'card1';  // Replace 'card1' with the actual card ID
-    var cardTextElement = document.getElementById(containerId).querySelector('#' + cardId + ' .card-text');
+    const containerId = document.getElementById('editCardModal').dataset.containerId;
+    const cardId = 'card1';  // Replace 'card1' with the actual card ID
+    const cardTextElement = document.getElementById(containerId).querySelector('#' + cardId + ' .card-text');
     
     if (cardTextElement) {
         cardTextElement.innerText = editedText;
@@ -72,30 +72,30 @@ function confirmEditCard() {
    
     closeEditCardModal();
 }
-function showEditCardModal(containerId) {
-    var modal = document.getElementById('editCardModal');
+const showEditCardModal = (containerId) => {
+    const modal = document.getElementById('editCardModal');
     modal.style.display = 'block';
     modal.dataset.containerId = containerId;
-    var currentCardText = getCurrentCardText(); // Define a function to get the current card text
+    const currentCardText = getCurrentCardText(); // Define a function to get the current card text
     document.getElementById('editCardText').value = currentCardText;
 }
 
-function getCurrentCardText() {
+const getCurrentCardText = () => {
     // For example, you can get the first card's text in the container
-    var containerId = document.getElementById('editCardModal').dataset.containerId;
-    var firstCardText = document.getElementById(containerId).getElementsByClassName('card-text')[0].innerText;
+    const containerId = document.getElementById('editCardModal').dataset.containerId;
+    const firstCardText = document.getElementById(containerId).getElementsByClassName('card-text')[0].innerText;
     return firstCardText;
 }
 
-function closeAddCardModal() {
-    var modal = document.getElementById('addCardModal');
+const closeAddCardModal = () => {
+    const modal = document.getElementById('addCardModal');
     modal.style.display = 'none';
 }
 
-function confirmAddCard() {
-    var modal = document.getElementById('addCardModal');
-    var containerId = modal.dataset.containerId;
-    var newCardText = document.getElementById('newCardText').value;
+const confirmAddCard = () => {
+    const modal = document.getElementById('addCardModal');
+    const containerId = modal.dataset.containerId;
+    const newCardText = document.getElementById('newCardText').value;
 
     // Add the new card
     createCard(containerId, 'newCard', newCardText);
@@ -104,8 +104,8 @@ function confirmAddCard() {
     closeAddCardModal();
 }
 
-function showAddCardModal(containerId) {
-    var modal = document.getElementById('addCardModal');
+const showAddCardModal = (containerId) => {
+    const modal = document.getElementById('addCardModal');
     modal.style.display = 'block';
     modal.dataset.containerId = containerId;
 }

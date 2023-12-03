@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll('.buttons input[type="button"]');
 
     buttons.forEach((btn) => {
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    function handleButtonClick() {
+    const handleButtonClick = () => {
         buttons.forEach((btn) => {
             btn.addEventListener("click", function () {
                 buttons.forEach((b) => {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     handleButtonClick();
 });
 
-<!-- Your HTML content -->
+// <!-- Your HTML content -->
 
 
 const popupButton = document.getElementById("pop-up");
@@ -39,12 +39,12 @@ const overlay = document.getElementById("overlay");
 const popup = document.getElementById("popup");
 const closeButton = document.getElementById("closeButton");
 
-popupButton.addEventListener("click", function () {
+popupButton.addEventListener("click", () => {
     overlay.style.display = "block";
     popup.style.display = "block";
 });
 
-closeButton.addEventListener("click", function () {
+closeButton.addEventListener("click", () => {
     overlay.style.display = "none";
     popup.style.display = "none";
 });
